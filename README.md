@@ -1,6 +1,6 @@
 # IPC-Evolution
 ## Contexte
-https://opendata.swiss/fr/dataset/lik-dezember-2020100-detailresultate-seit-1982-warenkorbstruktur-2020-inkl-sondergliederungen-l\
+https://opendata.swiss/fr/dataset/lik-dezember-2020100-detailresultate-seit-1982-warenkorbstruktur-2020-inkl-sondergliederungen-l  
 Les données proviennent de l’Office fédéral de la statistique (OFS) en Suisse. Elles mesurent l’évolution des prix des biens et services pour suivre l’inflation.  
 
 ## Description
