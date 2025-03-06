@@ -13,6 +13,6 @@ Notre projet vise à analyser l’évolution des prix en Suisse pour mieux compr
 ## Références
 L’IPC est utilisé par les économistes, les entreprises et les chercheurs pour analyser l’évolution des prix. Il sert aussi à ajuster les salaires et les prestations sociales.
 
-https://www.bfs.admin.ch/bfs/fr/home/statistiques/prix/indice-prix-consommation.html
-https://lik-app.bfs.admin.ch/fr/itr
-https://fr.tradingeconomics.com/switzerland/consumer-price-index-cpi
+https://www.bfs.admin.ch/bfs/fr/home/statistiques/prix/indice-prix-consommation.html  
+https://lik-app.bfs.admin.ch/fr/itr  
+https://fr.tradingeconomics.com/switzerland/consumer-price-index-cpi  
