@@ -1,24 +1,37 @@
 // Pour importer les données vous pouvez soit importer directement les csv (@rollup/plugin-dsv), soit utiliser la méthode csv de d3-fetch
 
-import { data } from "./dataHandler"
+import { game } from "./gameLogic"
 
 
 
-//foreach data compare first and last value and print in the console
+
+//logique des données
+
+import {  gameData,fullData, createBarGraph, createLineGraph,createLineGraphComparison } from './dataHandler.js';
 
 
-data.forEach(element => {
-    let index = 1;
-    element = Object.values(element);
+// Add a div element to your HTML with id="chart"
+// <div id="chart"></div>
 
-    let a = parseInt(element[index]);
-    let b = parseInt(element[element.length - 1]);
-    
-    while (!a) {
-        a = parseInt(element[++index]);
-    }
-    let diffValue = Math.abs(b - a);
-    console.log("Diff "+element[0] +" : " + diffValue);
+// Create bar graph with default options
+createBarGraph(gameData, '#chart');
+
+// Or with custom options
+createBarGraph(gameData, '#bars', {
+  width: 100,
+  height: 500,
+  barColor: '#ff6b6b',
+  title: 'Game IPC Evolution',
+  xAxisLabel: 'Game Titles',
+  yAxisLabel: 'IPC Difference'
 });
 
 
+console.log(fullData);
+
+createLineGraphComparison(fullData[1], fullData[2], '#line');
+
+//after delai de 2 secondes, on lance le jeu
+setTimeout(() => {
+    //game();
+}, 500);
