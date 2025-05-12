@@ -1,129 +1,287 @@
 :root {
-    --font-family-inter: 'Inter', sans-serif;
-    --text-black: rgba(0, 0, 0, 1);
-  }
-  
-  .text-black {
-    color: var(--text-black);
-  }
-  
-  
-  /* CSS Reset */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {    
+  --font-family-inter: "Inter", sans-serif;
+  --text-black: rgba(0, 0, 0, 1);
+}
+
+.text-black {
+  color: var(--text-black);
+}
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   flex-direction: column;
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-    background-color: rgba(25, 187, 253, 1);
-  }
-  
- main {
+  background-color: rgba(25, 187, 253, 1);
+}
+
+main {
   margin-top: 3vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 0 24px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 24px;
+}
+header {
+  margin-top: 2rem;
+  position: fixed;
+  text-align: center;
+}
 
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 3vh;
+  text-align: center;
+}
 
-  footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    margin-bottom: 3vh;
-    
-    text-align: center;
- }
+img {
+  max-width: 100%;
+  height: auto;
+}
 
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  
 .game-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    margin-top: 3vh;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 3vh;
+  text-align: top;
+}
 
-  .game-container {
-    margin-bottom: 2vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 60vh;
-  }
+.game-container {
+  margin-bottom: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vh;
+  height: 60vh;
+  position: absolute;
+}
 
+#left {
+  background-color: seagreen;
+  height: 50vh;
+  width: 50vw;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#right {
+  background-color: rgb(128, 135, 240);
+  width: 50vw;
+  height: 50vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#center {
+  position: absolute;
+}
 
+h1 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-inter);
+  font-weight: 700;
+  font-size: 3rem;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+h3 {
+  font-family: var(--font-family-inter);
+}
 
-  #left {
-    background-color: seagreen;
-  }
-  #right {
-    background-color: rgb(128, 135, 240);
-  }
-  #center {    
-    position: absolute
-  }
-  
+.text-4 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-inter);
+  font-weight: normal;
+  font-size: 36px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
 
-  h1 {
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    font-family: var(--font-family-inter);
-    font-weight: 700;
-    font-size: 96px;
-    text-decoration: none;
-    text-transform: none;
-    color: var(--text-black);
-  }
-  
-  .text-4 {
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    font-family: var(--font-family-inter);
-    font-weight: normal;
-    font-size: 36px;
-    text-decoration: none;
-    text-transform: none;
-    color: var(--text-black);
-  }
-  
-  .desktop-1-1 {
+.desktop-1-1 {
   @media (max-width: 1440px) {
     .desktop-1-1 {
       padding-left: 24px;
       padding-right: 24px;
     }
   }
-  
+
   @media (max-width: 768px) {
     .desktop-1-1 {
       padding-left: 16px;
       padding-right: 16px;
     }
   }
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    background-color: rgba(255, 255, 255, 1);
-  }
-  
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Empêche la page de scroller normalement */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Active un scroll vertical dans la zone de questions uniquement */
+#scrolly {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -ms-overflow-style: none; /* pour IE/Edge */
+  scrollbar-width: none; /* pour Firefox */
+}
+
+#scrolly::-webkit-scrollbar {
+  display: none; /* pour Chrome/Safari */
+}
+
+/* Chaque section occupe 100% de l'écran */
+.step {
+  height: 100vh; /* 100% de la hauteur de l'écran */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.step.is-active {
+  opacity: 1;
+  width: 100%;
+}
+.answer {
+  display: none;
+}
+
+.answer.is-visible {
+  display: block;
+  /* Vous pouvez ajouter des animations ou des transitions ici si nécessaire */
+}
+
+.icone {
+  width: 20vh;
+  height: 50vh;
+  margin: 5vh;
+}
+
+#center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  margin: 20px 0;
+}
+
+#balance-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+#balance-animated {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between; /* Assure un espacement égal entre les plateaux */
+  gap: 2vh; /* Espace entre les plateaux */
+  transition: transform 0.3s ease-out;
+  transform-origin: center center;
+}
+
+.plateau {
+  width: 300px;
+  height: auto;
+  transition: transform 0.3s ease-out;
+  margin-left: 30px;
+  margin-right: 0px;
+  margin-top: 0px;
+}
+
+#left {
+  display: flex;
+  justify-content: flex-start; /* Colle le plateau gauche au bord gauche */
+  align-items: center;
+}
+
+#right {
+  display: flex;
+  justify-content: flex-end; /* Colle le plateau droit au bord droit */
+  align-items: center;
+}
+
+.tige {
+  height: 50px;
+  width: auto;
+}
+
+.socle {
+  left: 50%;
+  display: flex;
+  width: 100px;
+  height: auto;
+}
+.plateau {
+  width: 150px;
+  height: auto;
+  position: flex;
+  z-index: 1;
+}
+
+#center {
+  position: absolute; /* Place le socle et la tige au centre sans affecter les autres éléments */
+  top: 50%; /* Centre verticalement */
+  left: 50%; /* Centre horizontalement */
+  transform: translate(-50%, -50%); /* Ajuste pour centrer parfaitement */
+  z-index: 2; /* Met le socle et la tige devant */
+}
+
+.game-container {
+  position: relative; /* Conteneur principal pour gérer les positions absolues */
+}
+
+.balance-svg {
+  width: 100%; /* Le SVG occupe toute la largeur disponible */
+  height: auto; /* La hauteur s'ajuste automatiquement */
+  display: block;
+  overflow: visible; /* Assure que tout le contenu du SVG est visible */
+}
+
+.socle {
+  width: 60%; /* Le socle occupe 60% de la largeur du SVG */
+  height: auto; /* La hauteur s'ajuste automatiquement */
+  x: 8.5vh;
+  y: 20%;
+  z-index: 1;
+}
+
+.tige {
+  width: 500px; /* La tige occupe 10% de la largeur du SVG */
+  height: 300px; /* La tige est fixe pour être bien visible */
+  position: center;
+  left: 45%; /* Centré horizontalement */
+  top: 10%; /* Positionné en haut */
+  x: -14.5vh;
+  y: -11vh;
+  z-index: 0; /* La tige est derrière le socle */
+}

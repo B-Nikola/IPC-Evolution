@@ -1,7 +1,7 @@
 // Pour importer les données vous pouvez soit importer directement les csv (@rollup/plugin-dsv), soit utiliser la méthode csv de d3-fetch
 
 import { game } from "./gameLogic"
-
+game();
 
 
 
@@ -9,6 +9,13 @@ import { game } from "./gameLogic"
 
 import {  gameData,fullData, createBarGraph, createLineGraph,createLineGraphComparison } from './dataHandler.js';
 
+//affichage des questions réponses
+// import "./elements/question-element.js";
+// import { QuestionSection } from "./sections/question-section.js";
+// QuestionSection();
+// import "./elements/answer-element.js";
+// import { AnswerSection } from "./sections/answer-section.js";
+// AnswerSection();
 
 // Add a div element to your HTML with id="chart"
 // <div id="chart"></div>
@@ -27,7 +34,7 @@ createBarGraph(gameData, '#bars', {
 });
 
 
-console.log(fullData);
+//console.log(fullData);
 
 createLineGraphComparison(fullData[1], fullData[2], '#line');
 

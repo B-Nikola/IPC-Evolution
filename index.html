@@ -1,40 +1,38 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IPC Evolution</title>
-  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPC Evolution</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="styles.css">
-  <script type="module" src="./src/index.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="./src/index.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Bonne réponse !</h1>
+    </header>
 
-<header>
-	<h1>Bonne réponse !</h1>
-</header>
+    <main>
+      <div id="scrolly">
+        <game-area> 
+        <div class="scrolly-graphic">
+          <!-- partie visuelle fixe -->
+        </div>
+        <div class="scrolly-steps">
+          <!-- ici tes <section class="step"> sont créés dynamiquement -->
+        </div>
+      </div>
+    </game-area>
+    </main>
 
-<main>
-
-<p>Voici l'évolution des deux depuis 2000</p>
-
-<div id="line">
-  line
-</div>
-<div id="bars">
-  bars
-</div>
-
-
-
-
-</main>
-
-<footer>
-		<h3>Prêt pour la prochaine questions ?</h3>
-</footer>
-	
-</body>
+    <footer>
+      <h3>Prêt pour la prochaine questions ?</h3>
+    </footer>
+  </body>
 </html>
