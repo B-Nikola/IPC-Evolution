@@ -20,8 +20,22 @@ export function scroll() {
   const el = response.element;
   el.classList.add("is-active");
 
-  const title = document.querySelector("h1");
   const footer = document.querySelector("h3");
+  const title = document.querySelector("h1");
+  
+  // First define questionEl
+  const questionEl = el.querySelector("question-element");
+  
+  // Then use it to access option values
+  const option1 = questionEl?.getAttribute("option1");
+  const option2 = questionEl?.getAttribute("option2");
+  
+    // Pour les questions/réponses
+  const questionText = questionEl?.getAttribute("currentQuestion");
+  
+  if (title && questionText) {
+    title.textContent = questionText;
+  }
 
   // Si c'est l'explication, utilise les data-attributes
   if (el.classList.contains("explication")) {
@@ -37,12 +51,7 @@ export function scroll() {
     if (balance) balance.style.display = "";
   }
 
-  // Pour les questions/réponses
-  const questionEl = el.querySelector("question-element");
-  const questionText = questionEl?.getAttribute("currentQuestion");
-  if (title && questionText) {
-    title.textContent = questionText;
-  }
+
 
   if (footer) {
     const footerText = questionEl?.getAttribute("footer");
@@ -142,11 +151,6 @@ export function scroll() {
       }, 700);
     }
   });
-
-
-
-
-
 
   window.addEventListener("resize", scroller.resize); // Recalcule en cas de redimensionnement
 }

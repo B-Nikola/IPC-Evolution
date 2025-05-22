@@ -7,7 +7,8 @@ game();
 
 //logique des données
 
-import {  gameData,fullData, createBarGraph, createLineGraph,createLineGraphComparison } from './dataHandler.js';
+import {  gameData,fullData, createBarGraph, createFullLineGraph,createComparisonLineGraph, createComparisonBarGraph } from './dataHandler.js';
+import { create } from "d3-selection";
 
 //affichage des questions réponses
 // import "./elements/question-element.js";
@@ -20,23 +21,33 @@ import {  gameData,fullData, createBarGraph, createLineGraph,createLineGraphComp
 // Add a div element to your HTML with id="chart"
 // <div id="chart"></div>
 
-// Create bar graph with default options
-createBarGraph(gameData, '#chart');
 
-// Or with custom options
-createBarGraph(gameData, '#bars', {
-  width: 100,
-  height: 500,
-  barColor: '#ff6b6b',
-  title: 'Game IPC Evolution',
-  xAxisLabel: 'Game Titles',
-  yAxisLabel: 'IPC Difference'
+let value1 = 0;
+let value2 = 0;
+
+//on input1 value change
+const input1 = document.getElementById('input1');
+input1.addEventListener('input', (event) => {
+    const value = event.target.value;
+    console.log(value);
+    value1 = value;
+    //update the graph with the new value
+    createComparisonLineGraph(fullData[value1], fullData[value2], '#line');
+    createComparisonBarGraph(fullData[value1], fullData[value2], '#bars');
+});
+//on input2 value change
+const input2 = document.getElementById('input2');
+input2.addEventListener('input', (event) => {
+    const value = event.target.value;
+    console.log(value);
+    value2 = value;
+    //update the graph with the new value
+    createComparisonLineGraph(fullData[value1], fullData[value2], '#line');
+    createComparisonBarGraph(fullData[value1], fullData[value2], '#bars');
 });
 
 
 //console.log(fullData);
-
-createLineGraphComparison(fullData[1], fullData[2], '#line');
 
 //after delai de 2 secondes, on lance le jeu
 setTimeout(() => {

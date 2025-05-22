@@ -190,17 +190,88 @@ html {
 .left-plateau {
   position: absolute;
   top: 31%; /* Ajuster selon votre tige */
-  left: -12%; /* Ajuster selon le visuel */
   z-index: 3;
+  /* Default value for large screens */
+  left: 45%;
+}
+
+/* Medium screens */
+@media screen and (max-width: 1200px) {
+  .left-plateau {
+    left: 30%;
+  }
+}
+
+/* Smaller desktop/large tablet screens */
+@media screen and (max-width: 992px) {
+  .left-plateau {
+    left: 15%;
+  }
+}
+
+/* Tablet screens */
+@media screen and (max-width: 768px) {
+  .left-plateau {
+    left: 8%;
+  }
+}
+
+/* Mobile screens */
+@media screen and (max-width: 576px) {
+  .left-plateau {
+    left: 2%;
+  }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 400px) {
+  .left-plateau {
+    left: 20%;
+  }
 }
 
 .right-plateau {
   position: absolute;
   top: 31%;
-  right: -12%;
   z-index: 1;
+  /* Default value for large screens */
+  right: 45%;
 }
 
+/* Medium screens */
+@media screen and (max-width: 1200px) {
+  .right-plateau {
+    right: 30%;
+  }
+}
+
+/* Smaller desktop/large tablet screens */
+@media screen and (max-width: 992px) {
+  .right-plateau {
+    right: 15%;
+  }
+}
+
+/* Tablet screens */
+@media screen and (max-width: 768px) {
+  .right-plateau {
+    right: 8%;
+  }
+}
+
+/* Mobile screens */
+@media screen and (max-width: 576px) {
+  .right-plateau {
+    right: 2%;
+  }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 400px) {
+  .right-plateau {
+    right: 20%;
+  }
+}
 
 #center {
   position: absolute;
@@ -245,4 +316,41 @@ html {
   transform: translateX(
     25.5%
   ); /* Compense la largeur pour un centrage parfait */
+}
+
+/* Updated charts container with precise width distribution */
+.charts-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%; /* 95% of viewport width leaving 5% for margins */
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.chart-section:first-child {
+  flex: 0 0 65%; /* Line chart takes exactly 65% width */
+  width: 65%;
+  max-width: none;
+}
+
+.chart-section:last-child {
+  flex: 0 0 30%; /* Bar chart takes exactly 30% width */
+  width: 30%;
+  max-width: none;
+}
+
+.line-chart, .bar-chart {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+p {
+  font-family: var(--font-family-inter);
+  font-weight: normal;
+  font-size: 0.85rem;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
 }
