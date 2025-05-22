@@ -142,6 +142,18 @@ export function QuestionSection() {
       option2: "Réfrigérateurs et congélateurs",
     },
   ]; // Ton tableau
+  const explications = `
+<div class="step explication" data-header="Bienvenue sur le jeu !" data-footer="Prêt ? Fais défiler pour commencer !">
+  <div class="explication-contenu">
+    <p>
+      À chaque étape, une question te sera posée.<br>
+      Clique sur le plateau de gauche ou de droite pour choisir ta réponse.<br>
+      La balance s’inclinera selon ton choix et tu découvriras la bonne réponse avec une explication.<br>
+      Prends le temps de réfléchir et amuse-toi bien&nbsp;!
+    </p>
+  </div>
+</div>`;
+  scrollySteps.insertAdjacentHTML("beforeend", explications);
 
   questions.forEach((q) => {
     // SECTION QUESTION

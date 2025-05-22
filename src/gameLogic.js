@@ -1,7 +1,6 @@
 import { gameData } from "./dataHandler";
 import "./elements/question-element.js";
 import { QuestionSection } from "./sections/question-section.js";
-
 import "./elements/answer-element.js";
 import { AnswerSection } from "./sections/answer-section.js";
 
@@ -11,7 +10,6 @@ let currentIndex = 0;
 const game = () => {
   gameInit();
 
-  // On attend que Scrollama et le DOM soient prêts
   setTimeout(() => {
     const questionSteps = document.querySelectorAll(".step question-element");
 
@@ -21,7 +19,7 @@ const game = () => {
 
       if (!leftItem || !rightItem) return;
 
-      // Survol gauche
+      // Événements gauche
       leftItem.addEventListener("mouseover", () => {
         moveDown(leftItem);
         moveUp(rightItem);
@@ -38,7 +36,12 @@ const game = () => {
         resetBalance(leftItem);
       });
 
-      // Survol droite
+      leftItem.addEventListener("click", () => {
+        if (index !== currentIndex) return;
+        handleClick("left");
+      });
+
+      // Événements droite
       rightItem.addEventListener("mouseover", () => {
         moveDown(rightItem);
         moveUp(leftItem);
@@ -55,13 +58,6 @@ const game = () => {
         resetBalance(rightItem);
       });
 
-      // Clic gauche
-      leftItem.addEventListener("click", () => {
-        if (index !== currentIndex) return;
-        handleClick("left");
-      });
-
-      // Clic droite
       rightItem.addEventListener("click", () => {
         if (index !== currentIndex) return;
         handleClick("right");
@@ -70,71 +66,63 @@ const game = () => {
   }, 500);
 };
 
-// Fonction appelée au clic sur une réponse
-const handleClick = (side) => {
-  const [itemA, itemB] = gameData;
-
-  const isCorrect =
-    (side === "left" && itemA.diffValue > itemB.diffValue) ||
-    (side === "right" && itemB.diffValue > itemA.diffValue);
-
-  console.log(isCorrect ? "✅ Gagné" : "❌ Perdu");
-
-  if (isCorrect) score++;
-
-  gameData.shift();
-  gameData.shift();
-
-  console.log("Score :", score);
-
-  // passe à la prochaine question dans Scrollama
-  currentIndex += 2;
+const getPlateauSvg = (item) => {
+  const questionEl = item.closest("question-element");
+  if (!questionEl) return null;
+  if (item.id === "left") {
+    return questionEl.querySelector(".left-plateau");
+  } else if (item.id === "right") {
+    return questionEl.querySelector(".right-plateau");
+  }
+  return null;
 };
 
-// Animations visuelles
 const moveDown = (item) => {
-  const svg = item.querySelector("svg");
-  svg.style.transform = `translateY(50px)`;
-  svg.style.transition = "all 0.2s ease-out";
+  const svg = getPlateauSvg(item);
+  if (svg) {
+    svg.style.transform = `translateY(30px)`;
+    svg.style.transition = "all 0.2s ease-out";
+  }
 
   const tige = item.closest("question-element")?.querySelector("#tige");
-
   if (item.id === "left" && tige) {
     tige.style.transform = "rotate(-10deg)";
-    tige.style.transformOrigin = "center center";
-    tige.style.transition = "transform 0.2s ease-out";
   } else if (item.id === "right" && tige) {
     tige.style.transform = "rotate(10deg)";
+  }
+  if (tige) {
     tige.style.transformOrigin = "center center";
     tige.style.transition = "transform 0.2s ease-out";
   }
 };
 
 const moveUp = (item) => {
-  const svg = item.querySelector("svg");
-  svg.style.transform = `translateY(-50px)`;
-  svg.style.transition = "all 0.2s ease-out";
+  const svg = getPlateauSvg(item);
+  if (svg) {
+    svg.style.transform = `translateY(-30px)`;
+    svg.style.transition = "all 0.2s ease-out";
+  }
 
   const tige = item.closest("question-element")?.querySelector("#tige");
-
   if (item.id === "left" && tige) {
     tige.style.transform = "rotate(10deg)";
-    tige.style.transformOrigin = "center center";
-    tige.style.transition = "transform 0.2s ease-out";
   } else if (item.id === "right" && tige) {
     tige.style.transform = "rotate(-10deg)";
+  }
+  if (tige) {
     tige.style.transformOrigin = "center center";
     tige.style.transition = "transform 0.2s ease-out";
   }
 };
 
 const resetPosition = (item) => {
-  const svg = item.querySelector("svg");
-  svg.style.transform = `translateY(0px)`;
-  svg.style.transition = "all 0.2s ease-out";
+  const svg = getPlateauSvg(item);
+  if (svg) {
+    svg.style.transform = `translateY(0px)`;
+    svg.style.transition = "all 0.2s ease-out";
+  }
 
   const tige = item.closest("question-element")?.querySelector("#tige");
-
   if (tige) {
     tige.style.transform = "rotate(0deg)";
     tige.style.transition = "transform 0.2s ease-out";
@@ -155,7 +143,6 @@ const resetCss = (item) => {
 
 const tiltBalanceLeft = (item) => {
   const tige = item.closest("question-element")?.querySelector("#tige");
-
   if (tige) {
     tige.style.transform = "rotate(-10deg)";
     tige.style.transition = "transform 0.2s ease-out";
@@ -164,7 +151,6 @@ const tiltBalanceLeft = (item) => {
 
 const tiltBalanceRight = (item) => {
   const tige = item.closest("question-element")?.querySelector("#tige");
-
   if (tige) {
     tige.style.transform = "rotate(10deg)";
     tige.style.transition = "transform 0.2s ease-out";
@@ -173,14 +159,30 @@ const tiltBalanceRight = (item) => {
 
 const resetBalance = (item) => {
   const tige = item.closest("question-element")?.querySelector("#tige");
-
   if (tige) {
     tige.style.transform = "rotate(0deg)";
     tige.style.transition = "transform 0.2s ease-out";
   }
 };
 
-// Initialisation des sections
+const handleClick = (side) => {
+  const [itemA, itemB] = gameData;
+
+  const isCorrect =
+    (side === "left" && itemA.diffValue > itemB.diffValue) ||
+    (side === "right" && itemB.diffValue > itemA.diffValue);
+
+  console.log(isCorrect ? "✅ Gagné" : "❌ Perdu");
+
+  if (isCorrect) score++;
+
+  gameData.shift();
+  gameData.shift();
+
+  console.log("Score :", score);
+  currentIndex += 2;
+};
+
 const gameInit = () => {
   QuestionSection();
   AnswerSection();

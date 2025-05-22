@@ -16,40 +16,52 @@ export function scroll() {
       step: ".step", // Les éléments à surveiller
       offset: 0.5,   // Déclenchement quand l'élément est au milieu
     })
-    .onStepEnter((response) => {
-      const el = response.element; // Élément activé
-      el.classList.add("is-active");
+.onStepEnter((response) => {
+  const el = response.element;
+  el.classList.add("is-active");
 
-      // Affiche le texte de la question dans le <h1>
-      const questionEl = el.querySelector("question-element");
-      const questionText = questionEl?.getAttribute("currentQuestion");
-      const title = document.querySelector("h1");
-      if (title && questionText) {
-        title.textContent = questionText;
-      }
+  const title = document.querySelector("h1");
+  const footer = document.querySelector("h3");
 
-      // Affiche le texte de bas de page
-      const footer = document.querySelector("h3");
-      if (footer) {
-        const footerText = questionEl?.getAttribute("footer");
-        footer.textContent = footerText;
-      }
+  // Si c'est l'explication, utilise les data-attributes
+  if (el.classList.contains("explication")) {
+    if (title) title.textContent = el.getAttribute("data-header") || "Explication du jeu";
+    if (footer) footer.textContent = el.getAttribute("data-footer") || "";
+    // Masque la balance si besoin
+    const balance = document.querySelector("#center");
+    if (balance) balance.style.display = "none";
+    return;
+  } else {
+    // Affiche la balance sur les autres étapes
+    const balance = document.querySelector("#center");
+    if (balance) balance.style.display = "";
+  }
 
-      // Affiche la réponse (si elle existe dans l'étape)
-      const answerEl = el.querySelector("answer-element");
-      if (answerEl) {
-        answerEl.classList.add("is-visible");
+  // Pour les questions/réponses
+  const questionEl = el.querySelector("question-element");
+  const questionText = questionEl?.getAttribute("currentQuestion");
+  if (title && questionText) {
+    title.textContent = questionText;
+  }
 
-        // Met à jour le footer si l'attribut est défini
-        const footerText = answerEl?.getAttribute("footer");
-        if (footer && footerText) {
-          footer.textContent = footerText;
-        }
-      }
+  if (footer) {
+    const footerText = questionEl?.getAttribute("footer");
+    footer.textContent = footerText;
+  }
 
-      // Enregistre l'index de l'étape actuelle
-      currentStepIndex = [...document.querySelectorAll(".step")].indexOf(el);
-    });
+  // Affiche la réponse (si elle existe dans l'étape)
+  const answerEl = el.querySelector("answer-element");
+  if (answerEl) {
+    answerEl.classList.add("is-visible");
+    const footerText = answerEl?.getAttribute("footer");
+    if (footer && footerText) {
+      footer.textContent = footerText;
+    }
+  }
+
+  // Enregistre l'index de l'étape actuelle
+  currentStepIndex = [...document.querySelectorAll(".step")].indexOf(el);
+});
 
   scroller.resize(); // Recalcule les positions
 
