@@ -684,7 +684,7 @@ function createFullLineGraph(data, selector) {
   data.forEach((d, i) => {
     const legendItem = legend.append("g")
       .attr("class", `legend-item-${i}`)
-      .attr("transform", `translate(${i * 150}, 0)`)
+      .attr("transform", `translate(${i * 225}, ${height + 20})`)
       .style("cursor", "pointer")
       .on("mouseover", function() {
         if (!visibleLines.has(i)) return; // Skip if legend is inactive
@@ -783,7 +783,7 @@ function createComparisonLineGraph(seriesName1, seriesName2, selector) {
   const containerHeight = d3.select(selector).node().getBoundingClientRect().height;
   
   // Adjust margins for smaller container
-  const margin = { top: 10, right: 5, bottom: 20, left: 5 };
+  const margin = { top: 10, right: 5, bottom: 20, left: 10 };
   const height = 650; // Slightly reduced height
   const width = 500; // Use almost full container width
   
@@ -811,7 +811,7 @@ function createComparisonLineGraph(seriesName1, seriesName2, selector) {
   const years = Array.from({length: numYears}, (_, i) => firstYear + i);
   
   // Calculate total width with spacing for years
-  const totalWidth = Math.max(800, years.length * 35); 
+  const totalWidth = Math.max(700, years.length * 35); 
   
   // Track visible lines
   const visibleLines = new Set([0, 1]); // Both lines visible initially
@@ -845,8 +845,7 @@ function createComparisonLineGraph(seriesName1, seriesName2, selector) {
   // Create a separate scale for year labels
   const yearScale = d3.scalePoint()
     .domain(years)
-    .range([0, totalWidth])
-    .padding(0.5);
+    .range([0, totalWidth]);
   
   // Find min and max values across all datasets
   const allValues = data.flatMap(d => d.values.filter(v => !isNaN(v)));
@@ -888,15 +887,17 @@ function createComparisonLineGraph(seriesName1, seriesName2, selector) {
     .attr("stroke-width", 1.5)
     .attr("stroke-dasharray", "5,3");
 
+    
   // Add text label for the reference line
   chart.append("text")
     .attr("class", "reference-line-label")
     .attr("x", 5)
     .attr("y", yScale(100) - 5)
     .attr("fill", "#ff9800")
-    .attr("font-size", "12px")
+    .attr("font-size", "14px")
     .attr("font-weight", "bold")
     .text("100 = Base");
+
   
   // Create custom X axis with years
   const xAxis = d3.axisBottom(yearScale)
@@ -1092,14 +1093,14 @@ function createComparisonLineGraph(seriesName1, seriesName2, selector) {
   // Add legend with clickable items
   const legend = svg.append("g")
     .attr("class", "legend")
-    .attr("transform", `translate(${margin.left}, ${margin.top / 2 - 15})`);
+    .attr("transform", `translate(${margin.left+ 50 }, ${margin.top + 350})`);
   
   
   // Add legend items for each dataset
   data.forEach((d, i) => {
     const legendItem = legend.append("g")
       .attr("class", `legend-item-${i}`)
-      .attr("transform", `translate(${i * 180}, 20)`)
+      .attr("transform", `translate(${i * 250}, 25)`)
       .style("cursor", "pointer")
       .on("click", function() {
         // Toggle line visibility
@@ -1390,7 +1391,7 @@ function createComparisonBarGraph(seriesName1, seriesName2, selector) {
     .style("font-size", "14px")
     .style("font-weight", "bold")
     .style("fill", d => d.difference > 0 ? "#333" : "#333")
-    .text(d => d.difference.toFixed(2));
+    .text(d => d.difference.toFixed(2)+ "%");
   
   // Add first-to-last year range label below each bar
   chart.selectAll(".year-range")

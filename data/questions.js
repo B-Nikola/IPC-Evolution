@@ -108,7 +108,9 @@ export const questions = [
     option1: "Taxi",
     option2: "Transports aériens",
   },
-  { question: "Fruits vs Légumes", option1: "Fruits", option2: "Légumes, champignons et pommes de terre" },
+  { question: "Fruits vs Légumes",
+    option1: "Fruits", 
+    option2: "Légumes, champignons et pommes de terre" },
   {
     question: "Boissons alcoolisées vs Tabac",
     option1: "Boissons alcoolisées",
@@ -131,7 +133,7 @@ export const questions = [
   },
   {
     question:
-      "Lave_linge, sèche_linge et lave_vaisselle vs Réfrigérateurs et congélateurs",
+      "Lave linge, sèche linge et lave vaisselle vs Réfrigérateurs et congélateurs",
     option1: "Lave-linge, sèche-linge et lave-vaisselle",
     option2: "Réfrigérateurs et congélateurs",
   },
